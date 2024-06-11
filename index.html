@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Images</title>
+    <style>
+        /* Add your CSS styles for the popup here */
+        /* Example style for demonstration */
+        .popup {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML code for the chatbot -->
+    <h1>Chatbot Interface</h1>
+    <!-- Add your chatbot interface here -->
+
+    <!-- Button to trigger the upload popup -->
+    <button onclick="openPopup()">Upload Images</button>
+
+    <!-- Hidden popup for image upload -->
+    <div id="uploadPopup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Upload Images</h2>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" name="image" id="image" accept="image/*" multiple>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript code for the popup -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Code to handle form submission
+            document.getElementById('uploadForm').onsubmit = async function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                // Handle image upload using fetch or any other method
+                // After successful upload, you can close the popup or perform any other action
+                // For demonstration, let's close the popup after a short delay
+                setTimeout(closePopup, 2000);
+            };
+
+            // Function to open the popup
+            function openPopup() {
+                document.getElementById('uploadPopup').style.display = 'block';
+            }
+
+            // Function to close the popup
+            function closePopup() {
+                document.getElementById('uploadPopup').style.display = 'none';
+            }
+
+            // Optional: Close the popup when clicking outside of it
+            window.addEventListener('click', function(event) {
+                if (event.target === document.getElementById('uploadPopup')) {
+                    closePopup();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
